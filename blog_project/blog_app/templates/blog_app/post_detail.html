@@ -1,0 +1,18 @@
+{% extends "blog_app/index.html" %}
+{% block content %}
+{% load static %}
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="mt-4">{{post.title}}</h1>
+        <hr>
+        <p>Postado em {{post.publicacao}}</p>
+        <hr>
+        <img class="img-fluid rounded" src="/{{post.thumbnail}}" alt="">
+        <hr>
+        <p class="lead text-justify">{{post.content}}</p>
+        <hr>
+      </div>
+    </div>
+  </div>
+{% endblock %}

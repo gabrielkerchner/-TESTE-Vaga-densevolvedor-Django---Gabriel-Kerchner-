@@ -1,0 +1,46 @@
+{% extends 'blog_app/index.html' %}
+{% block content %}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Todos os posts</h1>
+      <p class="lead text-muted">Abaixo todos os posts já postados:</p>
+    </div>
+  </section>
+    <div class="container">
+        <div class="row">
+        {% for post in page_obj %}
+            <div class="col-4 py-3">
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <a href="{% url 'blog_app:post_detail' post.slug %}">
+                            <img src="{{post.thumbnail}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{post.title}}</h5>
+                                <p class="card-text">{{post.content|slice:":25"}}...</p>
+                                <p class="card-text"><small class="text-muted">{{post.publicacao}}</small></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="pagination justify-content-center   ">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Pág {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

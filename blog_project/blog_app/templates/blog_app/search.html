@@ -1,0 +1,33 @@
+{% extends 'blog_app/index.html' %}
+{% block content %}
+ <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Resultado da pesquisa</h1>
+    </div>
+  </section>
+<div class="container">
+    <div class="row">
+    {% if posts %}
+    {% for post in posts %}
+        <div class="col-4 py-3">
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <a href="{% url 'blog_app:post_detail' post.slug %}">
+                        <img src="/{{post.thumbnail}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{post.title}}</h5>
+                            <p class="card-text">{{post.content|slice:":25"}}...</p>
+                            <p class="card-text"><small class="text-muted">{{post.publicacao}}</small></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+  {% endfor %}
+  </div>
+{% else %}
+<h3>Nenhum post encontrado!</h3>
+{% endif %}
+</div>
+
+{% endblock %}
