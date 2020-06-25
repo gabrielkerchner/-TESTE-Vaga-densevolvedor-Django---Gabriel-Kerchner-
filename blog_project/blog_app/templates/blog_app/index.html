@@ -19,11 +19,11 @@
         <a href="{% url 'blog_app:blog' %}" class="navbar-brand d-flex align-items-center">
             <strong><img src="{% static 'svg/book-solid.svg' %}" class="icon_arrow invert_color">Blog</strong>
         </a>
-        <form action="{% url 'blog_app:search' %}" method="GET">
+        <form action="{% url 'blog_app:search' %}" method="GET" id="form1">
             <div class="input-group" style="padding-top: 6%;">
                 <input name="q" value="{{request.GET.q}}" type="text" class="form-control" placeholder="Buscar Post" aria-label="Buscar Post" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon2"><img src="{% static 'svg/search-solid.svg' %}" style="height: 23px;"></span>
+                    <a href="#" onclick="document.getElementById('form1').submit();"><span class="input-group-text" id="basic-addon2"><img src="{% static 'svg/search-solid.svg' %}" style="height: 23px;"></span></a>
                 </div>
             </div>
         </form>
